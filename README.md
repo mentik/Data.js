@@ -32,29 +32,27 @@ x.print();
 #### Get Row
 
 ```js
-x.row[1];
-```
-
-```
-['Wikan', 'Google', 8, 27]
+x.getRow(1); // ['Wikan', 'Google', 8, 27]
 ```
 
 #### Get Column
 
-```
-x.col['company']
-```
-
-```
-['Microsoft', 'Google', 'Bitcoin']
+```js
+x.getCol('company'); // ['Microsoft', 'Google', 'Bitcoin']
 ```
 
 #### Get Size
 
-```
-x.size();
+```js
+x.getSize(); // [3, 4]
 ```
 
-```
-[3, 4]
+#### To Object 
+
+Convert `array` object property value to which using column names as key.
+
+```js
+const y = x.toObject();
+y.company; // ['Microsoft', 'Google', 'Bitcoin']
+y.name; // ['Getser', 'Wikan', 'Miki']
 ```
