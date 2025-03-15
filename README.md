@@ -4,22 +4,25 @@ Native javascript array library for data manipulation and analysis.
 
 ## Documentation
 
-### Create new Data
+### Instance Methods
+
+#### Create new Data
 
 ```js
 const x = new Data(
-    [["Getser", "Microsoft", 7, 28], ["Wikan", "Google", 8, 27], ["Miki", "Bitcoin", 9, 29]], 
-    ["name", "company", "score", "age"]
+    array=[["Getser", "Microsoft", 7, 28], ["Wikan", "Google", 8, 27], ["Miki", "Bitcoin", 9, 29]], 
+    cols=["name", "company", "score", "age"]
 );
 ```
 
-#### Print Data
+#### Print
 
 ```js
 x.print();
 ```
 
 ```
+print:1
 ----------------------------------------
 |   | name   | company   | score | age | 
 ----------------------------------------
@@ -41,18 +44,150 @@ x.getRow(1); // ['Wikan', 'Google', 8, 27]
 x.getCol('company'); // ['Microsoft', 'Google', 'Bitcoin']
 ```
 
+#### Get Cell
+
+```js
+x.getCell(row=1, col="company"); // 'Google'
+```
+
 #### Get Size
 
 ```js
 x.getSize(); // [3, 4]
 ```
 
+#### Rename Col
+
+```js
+const y = new Data(
+    array=[["Getser", "Microsoft", 7, 28], ["Wikan", "Google", 8, 27], ["Miki", "Bitcoin", 9, 29]], 
+    cols=["name", "company", "score", "age"]
+);
+
+y.print().renameCol(oldName="score", newName="employment_time").print();
+```
+
+```
+print:1
+----------------------------------------
+|   | name   | company   | score | age | 
+----------------------------------------
+| 0 | Getser | Microsoft | 7     | 28  | 
+| 1 | Wikan  | Google    | 8     | 27  | 
+| 2 | Miki   | Bitcoin   | 9     | 29  | 
+----------------------------------------
+print:2
+--------------------------------------------------
+|   | name   | company   | employment_time | age | 
+--------------------------------------------------
+| 0 | Getser | Microsoft | 7               | 28  | 
+| 1 | Wikan  | Google    | 8               | 27  | 
+| 2 | Miki   | Bitcoin   | 9               | 29  | 
+--------------------------------------------------
+```
+
+#### Drop Col
+
+```js
+const z = new Data(
+    array=[["Getser", "Microsoft", 7, 28], ["Wikan", "Google", 8, 27], ["Miki", "Bitcoin", 9, 29]], 
+    cols=["name", "company", "score", "age"]
+);
+
+z.print().dropCol("score").print();
+```
+
+```
+print:1
+----------------------------------------
+|   | name   | company   | score | age | 
+----------------------------------------
+| 0 | Getser | Microsoft | 7     | 28  | 
+| 1 | Wikan  | Google    | 8     | 27  | 
+| 2 | Miki   | Bitcoin   | 9     | 29  | 
+----------------------------------------
+print:2
+--------------------------------
+|   | name   | company   | age | 
+--------------------------------
+| 0 | Getser | Microsoft | 28  | 
+| 1 | Wikan  | Google    | 27  | 
+| 2 | Miki   | Bitcoin   | 29  | 
+--------------------------------
+```
+
+#### Drop Row
+```js
+const z = new Data(
+    array=[["Apple", 10, 1], ["Orange", 2, 2],["Lecy", 20, 3]],
+    cols=["fruit", "quantity", "price_usd"]
+);
+
+z.print().dropRow(1).print();
+```
+
+```
+print:1
+-------------------------------------
+|   | fruit  | quantity | price_usd | 
+-------------------------------------
+| 0 | Apple  | 10       | 1         | 
+| 1 | Orange | 2        | 2         | 
+| 2 | Lecy   | 20       | 3         | 
+-------------------------------------
+print:2
+------------------------------------
+|   | fruit | quantity | price_usd | 
+------------------------------------
+| 0 | Apple | 10       | 1         | 
+| 1 | Lecy  | 20       | 3         | 
+------------------------------------
+```
+
+#### Copy
+
+Copy the object from another object, make data manipulation and analysis much easier.
+
+```js
+const x = new Data(
+    array=[["Apple", 10, 1], ["Orange", 2, 2],["Lecy", 20, 3]],
+    cols=["fruit", "quantity", "price_usd"]
+);
+
+const y = x.copy().dropCol("price_usd");
+
+y.print()
+x.print()
+
+```
+
+```
+print:1
+-------------------------
+|   | fruit  | quantity | 
+-------------------------
+| 0 | Apple  | 10       | 
+| 1 | Orange | 2        | 
+| 2 | Lecy   | 20       | 
+-------------------------
+print:2
+-------------------------------------
+|   | fruit  | quantity | price_usd | 
+-------------------------------------
+| 0 | Apple  | 10       | 1         | 
+| 1 | Orange | 2        | 2         | 
+| 2 | Lecy   | 20       | 3         | 
+-------------------------------------
+```
+
 #### To Object 
 
-Convert `array` object property value to which using column names as key.
+Convert `array` object property value to object which using column names as key.
 
 ```js
 const y = x.toObject();
 y.company; // ['Microsoft', 'Google', 'Bitcoin']
 y.name; // ['Getser', 'Wikan', 'Miki']
 ```
+
+

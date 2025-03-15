@@ -13,12 +13,33 @@
 
 class Data {
 
+  #array;
+  #cols;
+
   constructor(array, cols){
-    this.array = array;
-    this.cols = cols;
+    this.#array = this.#arrayProperty(array, cols);
+    this.#cols = cols;
   }
 
-  // Private method to convert 2D array to object.
+  /**
+   * Private method
+   */
+
+  // Generate array properties.
+  #arrayProperty(array, cols){
+    let arr = [];
+    let row;
+    for (let i = 0; i < array.length; i++) {
+      row = [];
+      for (let j = 0; j < cols.length; j++) {
+        row.push((array[i].length - 1) < j ? "" : array[i][j]);
+      }
+      arr.push(row);
+    }
+    return arr;
+  }
+
+  // Convert 2D array to object.
   #colObject(array, cols){
     let obj = {};
     let row;
@@ -36,48 +57,96 @@ class Data {
 
   // To Object
   toObject(){
-    return this.#colObject(this.array, this.cols);
+    return this.#colObject(this.#array, this.#cols);
   }
 
   // Get Row
   getRow(row){
-    return this.array[row];
+    return this.#array[row];
   }
 
-  // Get Column
+  // Get Col
   getCol(col){
-    const colObject = this.#colObject(this.array, this.cols);
+    const colObject = this.#colObject(this.#array, this.#cols);
     return colObject[col];
   }
-  
+
+  // Get Cell
+  getCell(row, col){
+    const colObject = this.#colObject(this.#array, this.#cols);
+    return colObject[col][row];
+  }
+
   // Get the shape of data.
   getSize(){
-    return [this.array.length, Object.keys(this.cols).length];
+    return [this.#array.length, Object.keys(this.#cols).length];
+  }
+
+  // Rename Column 
+  renameCol(oldName, newName){
+    this.#cols = this.#cols.map(x => x === oldName ? newName : x);
+    return this
+  }
+
+  // Drop Column
+  dropCol(col){
+    const dropIndex = this.#cols.indexOf(col);
+    if (dropIndex > -1) {
+      let arr = [];
+      let col = []
+
+      this.#array.forEach(x => {
+        x.splice(dropIndex, 1);
+        arr.push(x);
+      });
+
+      this.#cols.forEach((value, index) => {
+        if (index !== dropIndex) {
+          col.push(value);
+        }
+      });
+
+      this.#array = arr;
+      this.#cols = col;
+    }
+    return this
+  }
+
+  // Drop Row
+  dropRow(row){
+    this.#array.splice(row, 1);
+    return this
+  }
+
+  // Copy
+  copy(){
+    return new Data(this.#array, this.#cols);
   }
 
   // Print
   print(){
-    const colObject = this.#colObject(this.array, this.cols);
-    const rowsLength = String(this.array.length-1).length;
-    const colsLength = this.cols.map(x => Math.max(...colObject[x].map(x => x.toString().length).concat(x.length)));
+    const colObject = this.#colObject(this.#array, this.#cols);
+    const rowsLength = String(this.#array.length-1).length;
+    const colsLength = this.#cols.map(x => Math.max(...colObject[x].map(x => x.toString().length).concat(x.length)));
 
     // Head
     let head = "\n| " + " ".repeat(rowsLength) + " | ";
-    for (let i = 0; i < this.cols.length; i++) {
-      head += this.cols[i] + " ".repeat(colsLength[i] - this.cols[i].length + 1) + "| ";
+    for (let i = 0; i < this.#cols.length; i++) {
+      head += this.#cols[i] + " ".repeat(colsLength[i] - this.#cols[i].length + 1) + "| ";
     }
     let sep = "\n" + "-".repeat(rowsLength) + "-".repeat(colsLength.reduce((accumulator, currentValue) => accumulator + currentValue + 3, 0) + 4);
     let text = sep + head + sep;
     
     // Body
-    for (let i = 0; i < this.array.length; i++) {
+    for (let i = 0; i < this.#array.length; i++) {
       text += "\n| " + String(i) + " ".repeat(rowsLength - String(i).length) + " | ";
-      for (let j = 0; j < this.array[i].length; j++) {
-        text += this.array[i][j] + " ".repeat(colsLength[j] - this.array[i][j].toString().length + 1) + "| ";
+      for (let j = 0; j < this.#array[i].length; j++) {
+        text += this.#array[i][j] + " ".repeat(colsLength[j] - this.#array[i][j].toString().length + 1) + "| ";
       }
     }
     text += sep;
-    return console.log(text);
+    console.log(text);
+    return this
   }
 
 }
