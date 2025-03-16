@@ -55,8 +55,18 @@ class Data {
     return obj;
   }
 
-  // To Object
-  toObject(){
+  // Get Array
+  getArray(){
+    return this.#array;
+  }
+
+  // Get Col Names
+  getColNames(){
+    return this.#cols;
+  }
+
+  // Get Object
+  getObject(){
     return this.#colObject(this.#array, this.#cols);
   }
 

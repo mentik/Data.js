@@ -1,5 +1,5 @@
 # Data.js
-Native javascript array library for data manipulation and analysis.
+Native JavaScript array library for data manipulation and analysis.
 
 Key Feature: 
 
@@ -25,6 +25,8 @@ const x = new Data(
 
 #### Print
 
+`print()` is print data to console and return the Data instance.
+
 ```js
 x.print();
 ```
@@ -40,7 +42,37 @@ print:1
 ----------------------------------------
 ```
 
+#### Get Array
+
+`getArray()` is return array of the Data instance. 
+
+```js
+x.getArray(); // [["Getser", "Microsoft", 7, 28], ["Wikan", "Google", 8, 27], ["Miki", "Bitcoin", 9, 29]]
+```
+
+#### Get Col Names 
+
+`getColNames()` is return column names of the Data instance.
+
+```js
+x.getColNames(); // ['name', 'company', 'score', 'age']
+```
+
+#### Get Object 
+
+`getObject()` is return column object of the Data instance.
+
+Get `array` object property value to object which using column names as key.
+
+```js
+const y = x.getObject();
+y.company; // ['Microsoft', 'Google', 'Bitcoin']
+y.name; // ['Getser', 'Wikan', 'Miki']
+```
+
 #### Get Row
+
+`getRow(row:int)` is return selected row of the array in the Data instance.
 
 ```js
 x.getRow(1); // ['Wikan', 'Google', 8, 27]
@@ -48,11 +80,15 @@ x.getRow(1); // ['Wikan', 'Google', 8, 27]
 
 #### Get Column
 
+`getColumn(col:str)` is return selected column of the array in Data instance.
+
 ```js
 x.getCol('company'); // ['Microsoft', 'Google', 'Bitcoin']
 ```
 
 #### Get Cell
+
+`getCell(row:int, col:str)` is return selected cell of the array in Data instance.
 
 ```js
 x.getCell(row=1, col="company"); // 'Google'
@@ -60,11 +96,15 @@ x.getCell(row=1, col="company"); // 'Google'
 
 #### Get Size
 
+`getSize()` is return size [nrow, ncol] of the array in Data instance.
+
 ```js
 x.getSize(); // [3, 4]
 ```
 
 #### Rename Col
+
+`renameCol(oldName:str, newName:str)` is rename the column name and return the Data instance.
 
 ```js
 const y = new Data(
@@ -96,6 +136,8 @@ print:2
 
 #### Drop Col
 
+`dropCol(col:str)` is drop the column and return Data instance.
+
 ```js
 const z = new Data(
     array=[["Getser", "Microsoft", 7, 28], ["Wikan", "Google", 8, 27], ["Miki", "Bitcoin", 9, 29]], 
@@ -125,6 +167,9 @@ print:2
 ```
 
 #### Drop Row
+
+`dropRow(row:int)` is drop the row and return Data instance.
+
 ```js
 const z = new Data(
     array=[["Apple", 10, 1], ["Orange", 2, 2],["Lecy", 20, 3]],
@@ -153,6 +198,8 @@ print:2
 ```
 
 #### Copy
+
+`copy()` is duplicate and return to new Data instance.
 
 Copy the object from another object, make data manipulation and analysis much easier.
 
@@ -187,15 +234,3 @@ print:2
 | 2 | Lecy   | 20       | 3         | 
 -------------------------------------
 ```
-
-#### To Object 
-
-Convert `array` object property value to object which using column names as key.
-
-```js
-const y = x.toObject();
-y.company; // ['Microsoft', 'Google', 'Bitcoin']
-y.name; // ['Getser', 'Wikan', 'Miki']
-```
-
-
