@@ -1,8 +1,8 @@
 {
   "name": "native-data.js",
-  "version": "0.0.2",
-  "description": "Native JavaScript Array library for data manipulation and analysis.",
-  "main": "src/Data.js",
+  "version": "0.0.3",
+  "description": "Native JavaScript Array Library for Data Manipulation and Analysis.",
+  "main": "src/native-data.js",
   "scripts": {
     "test": "Data"
   },

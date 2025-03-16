@@ -1,4 +1,6 @@
-# Data: Native JavaScript Array library for data manipulation and analysis.
+## Native JavaScript Array Library
+
+Data is Native JavaScript Array library for data manipulation and analysis.
 
 Key Feature: 
 
