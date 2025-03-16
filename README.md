@@ -1,6 +1,14 @@
 # Data.js
 Native javascript array library for data manipulation and analysis.
 
+Key Feature: 
+
+- Simplicity: Works with 2D arrays like a spreadsheet, making it simple and straightforward.
+- User-Friendly: Easy-to-read syntax inspired by Python and R, with methods that are intuitive and clean.
+- Clear Data Display: The print() method shows data in a clean table format for quick understanding.
+- Native to JavaScript: Fully compatible with JavaScript projects and works seamlessly.
+- Convertible: Easily converts data into objects or other formats for flexible use in various applications.
+- Customizable: Data.js adopts an object-oriented design, making it easier to extend, modify, and build.
 
 ## Documentation
 
