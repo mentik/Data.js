@@ -1,6 +1,6 @@
 {
   "name": "native-data.js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Native JavaScript Array Library for Data Manipulation and Analysis.",
   "main": "src/native-data.js",
   "scripts": {
@@ -11,12 +11,15 @@
     "url": "git+https://github.com/mentik/native-data.js.git"
   },
   "keywords": [
-    "Data.js"
+    "native-data.js", "data.js", "data", "data-manipulation", "data-analysis", "array", "object"
   ],
   "author": "Mentik",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mentik/native-data.js/issues"
   },
-  "homepage": "https://github.com/mentik/native-data.js#readme"
+  "homepage": "https://github.com/mentik/native-data.js#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
 }
