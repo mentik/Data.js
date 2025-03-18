@@ -1,6 +1,6 @@
 /**
  * Data.js
- * Native javascript array library for data manipulation and analysis.
+ * Native JavaScript Array Library for Data Manipulation and Analysis.
  */
 
 /**
@@ -15,9 +15,11 @@ class Data {
 
   #array;
   #cols;
+  #types;
 
   constructor(array, cols){
     this.#array = this.#arrayProperty(array, cols);
+    this.#types = this.#colDataTypes(array, cols);
     this.#cols = cols;
   }
 
@@ -25,7 +27,7 @@ class Data {
    * Private method
    */
 
-  // Generate array properties.
+  // Generate array property.
   #arrayProperty(array, cols){
     let arr = [];
     let row;
@@ -55,6 +57,34 @@ class Data {
     return obj;
   }
 
+  /* 
+   * Generate column data types using array to maintain the order of columns.
+   */
+  #colDataTypes(array, cols){
+    let type = [];
+    const colObject = this.#colObject(array, cols)
+    let col, colType, rowIndex;
+    for (let i = 0; i < cols.length; i++) {
+      col = colObject[cols[i]];
+      colType = "undefined";
+      rowIndex = 0;
+      while (colType === "undefined" && rowIndex < col.length) {
+        if (col[rowIndex] === "") {
+          rowIndex++;
+        } else {
+          colType = typeof col[rowIndex];
+        }
+        rowIndex++;
+      }
+      type.push(colType);
+    }
+    return type;
+  }
+
+  /**
+   * Public method
+   */
+
   // Get Array
   getArray(){
     return this.#array;
@@ -63,6 +93,15 @@ class Data {
   // Get Col Names
   getColNames(){
     return this.#cols;
+  }
+
+  // Get Col Data Types
+  getColDataTypes(){
+    const colTypes = {};
+    this.#cols.forEach((value, index) => {
+      colTypes[value] = this.#types[index];
+    });
+    return colTypes;
   }
 
   // Get Object
@@ -103,7 +142,8 @@ class Data {
     const dropIndex = this.#cols.indexOf(col);
     if (dropIndex > -1) {
       let arr = [];
-      let col = []
+      let cols = []
+      let types = []
 
       this.#array.forEach(x => {
         x.splice(dropIndex, 1);
@@ -112,12 +152,14 @@ class Data {
 
       this.#cols.forEach((value, index) => {
         if (index !== dropIndex) {
-          col.push(value);
+          cols.push(value);
+          types.push(this.#types[index]);
         }
       });
 
       this.#array = arr;
-      this.#cols = col;
+      this.#cols = cols;
+      this.#types = types;
     }
     return this
   }

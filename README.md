@@ -59,6 +59,14 @@ x.getArray(); // [["Getser", "Microsoft", 7, 28], ["Wikan", "Google", 8, 27], ["
 x.getColNames(); // ['name', 'company', 'score', 'age']
 ```
 
+#### Get Col Data Types
+
+`getColDataTypes()` return column data types dictionary.
+
+```js
+x.getColDataTypes().name; // string
+```
+
 #### Get Object 
 
 `getObject()` is return column object of the Data instance.
