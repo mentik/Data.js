@@ -81,6 +81,34 @@ class Data {
     return type;
   }
 
+
+  /**
+   * Helper method for public print method.
+   */
+  #print(){
+    const colObject = this.#colObject(this.#array, this.#cols);
+    const rowsLength = String(this.#array.length-1).length;
+    const colsLength = this.#cols.map(x => Math.max(...colObject[x].map(x => x.toString().length).concat(x.length)));
+
+    // Head
+    let head = "\n| " + " ".repeat(rowsLength) + " | ";
+    for (let i = 0; i < this.#cols.length; i++) {
+      head += this.#cols[i] + " ".repeat(colsLength[i] - this.#cols[i].length + 1) + "| ";
+    }
+    let sep = "\n" + "-".repeat(rowsLength) + "-".repeat(colsLength.reduce((accumulator, currentValue) => accumulator + currentValue + 3, 0) + 4);
+    let text = sep + head + sep;
+    
+    // Body
+    for (let i = 0; i < this.#array.length; i++) {
+      text += "\n| " + String(i) + " ".repeat(rowsLength - String(i).length) + " | ";
+      for (let j = 0; j < this.#array[i].length; j++) {
+        text += this.#array[i][j] + " ".repeat(colsLength[j] - this.#array[i][j].toString().length + 1) + "| ";
+      }
+    }
+    text += sep;
+    return text;
+  }
+
   /**
    * Public method
    */
@@ -175,32 +203,15 @@ class Data {
     return new Data(this.#array, this.#cols);
   }
 
-  // Print
+  // Console Print for debugging
   print(){
-    const colObject = this.#colObject(this.#array, this.#cols);
-    const rowsLength = String(this.#array.length-1).length;
-    const colsLength = this.#cols.map(x => Math.max(...colObject[x].map(x => x.toString().length).concat(x.length)));
-
-    // Head
-    let head = "\n| " + " ".repeat(rowsLength) + " | ";
-    for (let i = 0; i < this.#cols.length; i++) {
-      head += this.#cols[i] + " ".repeat(colsLength[i] - this.#cols[i].length + 1) + "| ";
-    }
-    let sep = "\n" + "-".repeat(rowsLength) + "-".repeat(colsLength.reduce((accumulator, currentValue) => accumulator + currentValue + 3, 0) + 4);
-    let text = sep + head + sep;
-    
-    // Body
-    for (let i = 0; i < this.#array.length; i++) {
-      text += "\n| " + String(i) + " ".repeat(rowsLength - String(i).length) + " | ";
-      for (let j = 0; j < this.#array[i].length; j++) {
-        text += this.#array[i][j] + " ".repeat(colsLength[j] - this.#array[i][j].toString().length + 1) + "| ";
-      }
-    }
-    text += sep;
-    console.log(text);
+    console.log(this.#print());
     return this
   }
 
+  // Get Print
+  getPrint(){
+    return this.#print();
+  }
+
 }
-
-

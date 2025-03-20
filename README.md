@@ -1,6 +1,6 @@
 ## Native JavaScript Array Library
 
-[![npm](https://img.shields.io/badge/npm-0.0.6-orange.svg)](https://www.npmjs.com/package/native-data.js) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mentik/native-data.js/blob/master/LICENSE) [![NPM downloads](https://img.shields.io/npm/dm/native-data.js.svg?style=flat-square)](https://npmtrends.com/native-data.js)
+[![npm](https://img.shields.io/badge/npm-0.0.8-orange.svg)](https://www.npmjs.com/package/native-data.js) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mentik/native-data.js/blob/master/LICENSE) [![NPM downloads](https://img.shields.io/npm/dm/native-data.js.svg?style=flat-square)](https://npmtrends.com/native-data.js)
 
 Data is Native JavaScript Array library for data manipulation and analysis.
 
@@ -44,6 +44,11 @@ print:1
 | 2 | Miki   | Bitcoin   | 9     | 29  | 
 ----------------------------------------
 ```
+
+#### Get Print
+
+`getPrint()` is return print text as string, useful for showing the result in the front end.
+
 
 #### Get Array
 
