@@ -1,5 +1,5 @@
 /**
- * Data.js
+ * native-data.js
  * Native JavaScript Array Library for Data Manipulation and Analysis.
  */
 

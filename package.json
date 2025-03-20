@@ -11,15 +11,12 @@
     "url": "git+https://github.com/mentik/native-data.js.git"
   },
   "keywords": [
-    "native-data.js", "data.js", "data", "data-manipulation", "data-analysis", "array", "object"
+    "native-data.js", "data.js", "data", "data-manipulation", "data-analysis", "array", "object", "pandas", "numpy", "tidyverse"
   ],
   "author": "Mentik",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mentik/native-data.js/issues"
   },
-  "homepage": "https://github.com/mentik/native-data.js#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  }
+  "homepage": "https://github.com/mentik/native-data.js#readme"
 }
