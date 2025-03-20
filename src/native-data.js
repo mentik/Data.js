@@ -128,7 +128,7 @@ class Data {
 
   // Get the shape of data.
   getSize(){
-    return [this.#array.length, Object.keys(this.#cols).length];
+    return [this.#array.length, this.#cols.length];
   }
 
   // Rename Column 
